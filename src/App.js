@@ -4,9 +4,9 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
-// import IsPrivate from "./components/IsPrivate";
+import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
- 
+import CreateMeme from "./pages/CreateMeme";
 function App() {
   return (
     <div className="App">
@@ -24,10 +24,10 @@ function App() {
           element={ <IsPrivate> <ProjectDetailsPage /> </IsPrivate> }
         /> */}
  
-        {/* <Route
-          path="/projects/edit/:projectId"
-          element={ <IsPrivate> <EditProjectPage /> </IsPrivate> } 
-        /> */}
+        <Route
+          path="/templates/:id"
+          element={ <IsPrivate> <CreateMeme /> </IsPrivate> } 
+        />
         
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />

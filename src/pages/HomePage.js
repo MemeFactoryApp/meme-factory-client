@@ -19,11 +19,10 @@ function HomePage(){
       getAllTemplates();
     }, [] );
   
-    
     return (
       <div className="ProjectListPage">
         { templates.map((template) => (
-          <TemplateCard key={template._id} {...template} />
+          <TemplateCard key={template.id} {...template} />
         ))}       
       </div>
     );
