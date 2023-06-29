@@ -4,14 +4,14 @@ import TemplateCard from '../components/TemplateCard';
 
 
 function HomePage(){
-    const API_URL = "https://localhost:5005"
+    const API_URL = "http://localhost:5005"
     const [templates, setTemplates] = useState([]);
   
     const getAllTemplates = () => {
       axios
-        .get(`${API_URL}/templates`)
-        .then((response) => 
-        setTemplates(response.data))
+        .get(`${API_URL}/api/templates`)
+        .then((response) => { 
+            setTemplates(response.data)})
         .catch((error) => console.log(error));
     };
   

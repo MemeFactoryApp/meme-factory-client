@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-function TemplateCard ( { name, id } ) {
+function TemplateCard (props) {
   
   return (
     <div className="TemplateCard card">
-      <Link to={`/templates/${id}`}>
-        <h3>{name}</h3>
+      <Link to={`/templates/${props.id}`}>
+        <h3>{props.name}</h3>
+      <img src={props.example.url} alt="meme"></img>
       </Link>
-      <p style={{ maxWidth: "400px" }}>{name} </p>
     </div>
   );
 }
