@@ -5,6 +5,7 @@ import axios from "axios";
 function CreateMeme() {
   const API_URL = "http://localhost:5005";
   const [template, setTemplate] = useState(null);
+  const [input, setInput] = useState({});
   const { id } = useParams();
 
   const getTemplateDetails = () => {
@@ -12,17 +13,37 @@ function CreateMeme() {
       .get(`${API_URL}/api/templates/${id}`)
       .then((response) => {
         setTemplate(response.data);
+        setInput(Object.assign({}, response.data.example.text))
       })
       .catch((error) => console.log(error));
+  };
+
+  const changeInput = (e) => {
+    setInput((previousInput) => {
+      const {name, value} = e.target
+      return {
+        ...previousInput, [name]: value 
+      }
+    });
   };
 
   useEffect(() => {
     getTemplateDetails();
   }, []);
 
-  /*   console.log("template", template);
-  console.log("example", template.example);
-  console.log(template?.example?.text); */
+  useEffect(() => {
+    const requestBody = {input}
+    axios
+    .post(`${API_URL}/api/templates/${id}`, requestBody)
+    .then((response) => {
+      console.log(response)
+    })
+    //axios.post --- templates/:id 
+    //reset template.example.url(response.data)
+    // ...spread previous template - set only example.url 
+  }, [input]);
+
+
 
   if (!template) {
     return <p>loading...</p>;
@@ -32,8 +53,17 @@ function CreateMeme() {
     <>
       <h1>HI!</h1>
       <h1>{template.name}</h1>
-      {template.example.text.map((element) => {
-        return <div key={element}>{element}</div>;
+      <img src={template.example.url} />
+      {Object.values(input).map((element, index) => {
+        return (
+          <input
+            key={index}
+            type="text"
+            name={index}
+            value={element}
+            onChange={changeInput}
+          />
+        );
       })}
     </>
   );
