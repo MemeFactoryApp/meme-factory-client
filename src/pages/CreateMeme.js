@@ -13,17 +13,18 @@ function CreateMeme() {
       .get(`${API_URL}/api/templates/${id}`)
       .then((response) => {
         setTemplate(response.data);
-        setInput(Object.assign({}, response.data.example.text))
+        setInput(Object.assign({}, response.data.example.text));
       })
       .catch((error) => console.log(error));
   };
 
   const changeInput = (e) => {
     setInput((previousInput) => {
-      const {name, value} = e.target
+      const { name, value } = e.target;
       return {
-        ...previousInput, [name]: value 
-      }
+        ...previousInput,
+        [name]: value,
+      };
     });
   };
 
@@ -32,18 +33,21 @@ function CreateMeme() {
   }, []);
 
   useEffect(() => {
-    const requestBody = {input}
+    const requestBody = { text: Object.values(input) };
     axios
-    .post(`${API_URL}/api/templates/${id}`, requestBody)
-    .then((response) => {
-      console.log(response)
-    })
-    //axios.post --- templates/:id 
-    //reset template.example.url(response.data)
-    // ...spread previous template - set only example.url 
+      .post(`${API_URL}/api/templates/${id}`, requestBody)
+      .then((response) => {
+        setTemplate((prevTemplate) => {
+          const newObj = { ...prevTemplate };
+          newObj.example.url = response.data.url;
+
+          return newObj;
+        });
+      })
+      .catch((e) => console.log(e));
   }, [input]);
 
-
+  console.log(template);
 
   if (!template) {
     return <p>loading...</p>;
