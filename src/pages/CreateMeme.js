@@ -7,7 +7,7 @@ function CreateMeme() {
   const API_URL = "http://localhost:5005";
   const [template, setTemplate] = useState(null);
   const [input, setInput] = useState({});
-  const [title, setTitle] = useState("")
+  const [title, setTitle] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -56,19 +56,22 @@ function CreateMeme() {
     e.preventDefault();
     const newMeme = {
       title: title,
-      url: template.example.url
+      url: template.example.url,
     };
-    createMeme(newMeme)
+    createMeme(newMeme);
   };
 
   const createMeme = (newMeme) => {
-    const storedToken = localStorage.getItem("authToken")
-    axios.post(`${API_URL}/api/create`, newMeme, { headers: { Authorization: `Bearer ${storedToken}`} })
-    .then((response) => {
-      navigate('/')
-    })
-    .catch((e) => console.log(e));
-  }
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .post(`${API_URL}/api/create`, newMeme, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        navigate("/");
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <>
@@ -76,22 +79,26 @@ function CreateMeme() {
       <h1>{template.name}</h1>
       <img src={template.example.url} />
       <form onSubmit={handleSubmit}>
-      {Object.values(input).map((element, index) => {
-        return (
-          <input
-            key={index}
-            type="text"
-            name={index}
-            value={element}
-            onChange={changeInput}
-          />
-        );
-      })}
-      <input type="text" name="title" value={title} onChange={(e) => {
-        setTitle(e.target.value)
-      }}
+        {Object.values(input).map((element, index) => {
+          return (
+            <input
+              key={index}
+              type="text"
+              name={index}
+              value={element}
+              onChange={changeInput}
+            />
+          );
+        })}
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
         ></input>
-      <Button onClick={handleSubmit}>Create</Button>
+        <Button onClick={handleSubmit}>Create</Button>
       </form>
     </>
   );

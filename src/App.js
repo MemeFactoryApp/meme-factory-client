@@ -7,33 +7,66 @@ import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import CreateMeme from "./pages/CreateMeme";
+import GroupsPage from "./pages/GroupsPage";
+
 function App() {
   return (
     <div className="App">
       <Navbar />
- 
-      <Routes>      
-        <Route path="/" element={ <HomePage /> } />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
         {/* <Route
           path="/projects"
           element={ <IsPrivate> <ProjectListPage /> </IsPrivate> } 
         /> */}
- 
+
         {/* <Route
           path="/projects/:projectId"
           element={ <IsPrivate> <ProjectDetailsPage /> </IsPrivate> }
         /> */}
- 
+
         <Route
           path="/templates/:id"
-          element={ <IsPrivate> <CreateMeme /> </IsPrivate> } 
+          element={
+            <IsPrivate>
+              {" "}
+              <CreateMeme />{" "}
+            </IsPrivate>
+          }
         />
-        
-        <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
-        <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
+
+        <Route
+          path="/groups/:id"
+          element={
+            <IsPrivate>
+              {" "}
+              <GroupsPage />{" "}
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              {" "}
+              <SignupPage />{" "}
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              {" "}
+              <LoginPage />{" "}
+            </IsAnon>
+          }
+        />
       </Routes>
     </div>
   );
 }
- 
+
 export default App;
