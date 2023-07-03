@@ -8,6 +8,7 @@ import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
 import CreateMeme from "./pages/CreateMeme";
 import GroupsPage from "./pages/GroupsPage";
+import GroupDetails from "./pages/GroupDetails";
 
 function App() {
   return (
@@ -42,6 +43,16 @@ function App() {
             <IsPrivate>
               {" "}
               <GroupsPage />{" "}
+            </IsPrivate>
+          }
+        />
+
+<Route
+          path="/memes"
+          element={
+            <IsPrivate>
+              {" "}
+              <GroupDetails />{" "}
             </IsPrivate>
           }
         />
