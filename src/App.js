@@ -37,7 +37,7 @@ function App() {
         />
 
         <Route
-          path="/groups/:id"
+          path="/groups"
           element={
             <IsPrivate>
               {" "}

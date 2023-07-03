@@ -13,7 +13,7 @@ function GroupsPage() {
 
     // Send the token through the request "Authorization" Headers
     axios
-      .get(`${API_URL}/api/groups/${id}`, {
+      .get(`${API_URL}/api/groups`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -29,6 +29,11 @@ function GroupsPage() {
   return (
     <>
       <p>
+        {groups.map((element) => {
+          return(
+            <p>{element.groupName}</p>
+          )
+        })}
         <button>Create New Group</button>
       </p>
 
