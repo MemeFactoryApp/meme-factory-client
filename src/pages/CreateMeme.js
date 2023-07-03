@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { Button } from "@mantine/core";
 
 function CreateMeme() {
   const API_URL = "http://localhost:5005";
   const [template, setTemplate] = useState(null);
   const [input, setInput] = useState({});
+  const [title, setTitle] = useState("")
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const getTemplateDetails = () => {
     axios
@@ -40,24 +43,39 @@ function CreateMeme() {
         setTemplate((prevTemplate) => {
           const newObj = { ...prevTemplate };
           newObj.example.url = response.data.url;
-
           return newObj;
         });
       })
       .catch((e) => console.log(e));
   }, [input]);
 
-  console.log(template);
-
   if (!template) {
     return <p>loading...</p>;
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newMeme = {
+      title: title,
+      url: template.example.url
+    };
+    createMeme(newMeme)
+  };
+
+  const createMeme = (newMeme) => {
+    const storedToken = localStorage.getItem("authToken")
+    axios.post(`${API_URL}/api/create`, newMeme, { headers: { Authorization: `Bearer ${storedToken}`} })
+    .then((response) => {
+      navigate('/')
+    })
+    .catch((e) => console.log(e));
   }
 
   return (
     <>
-      <h1>HI!</h1>
+      <h1>Create new Me-me</h1>
       <h1>{template.name}</h1>
       <img src={template.example.url} />
+      <form onSubmit={handleSubmit}>
       {Object.values(input).map((element, index) => {
         return (
           <input
@@ -69,6 +87,12 @@ function CreateMeme() {
           />
         );
       })}
+      <input type="text" name="title" value={title} onChange={(e) => {
+        setTitle(e.target.value)
+      }}
+        ></input>
+      <Button onClick={handleSubmit}>Create</Button>
+      </form>
     </>
   );
 }
