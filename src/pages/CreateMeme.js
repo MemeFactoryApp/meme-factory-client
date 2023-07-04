@@ -4,14 +4,25 @@ import axios from "axios";
 import { Button } from "@mantine/core";
 
 function CreateMeme() {
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
+  const API_URL = process.env.REACT_APP_API_URL;
   const [template, setTemplate] = useState(null);
   const [input, setInput] = useState({});
   const [title, setTitle] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setisLoading] = useState(false);
+
+  // Set default header. e.g, X-API-KEY
+  axios.defaults.headers.common = {
+    "X-API-Key": "mequyzi2p0",
+  };
+  // this function controls our loading state
+  const toggleLoadingState = () => {
+    setisLoading((current) => !current);
+  };
 
   const getTemplateDetails = () => {
+    toggleLoadingState();
     axios
       .get(`${API_URL}/api/templates/${id}`)
       .then((response) => {
@@ -33,6 +44,7 @@ function CreateMeme() {
 
   useEffect(() => {
     getTemplateDetails();
+    toggleLoadingState();
   }, []);
 
   useEffect(() => {
@@ -40,11 +52,18 @@ function CreateMeme() {
     axios
       .post(`${API_URL}/api/templates/${id}`, requestBody)
       .then((response) => {
-        setTemplate((prevTemplate) => {
-          const newObj = { ...prevTemplate };
-          newObj.example.url = response.data.url;
-          return newObj;
-        });
+        console.log(
+          "response >>>>>",
+          response.data,
+          "previoustyemplate >>>>>",
+          template
+        );
+        if (!isLoading && template)
+          setTemplate((prevTemplate) => {
+            const newObj = { ...prevTemplate };
+            newObj.example.url = response.data.url;
+            return newObj;
+          });
       })
       .catch((e) => console.log(e));
   }, [input]);

@@ -1,5 +1,7 @@
+import { Grid } from "@mantine/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import MemeCard from "../components/MemeCard";
 
 function GroupDetails() {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -19,13 +21,15 @@ function GroupDetails() {
     getAllMemes();
   }, []);
 
-  return (<>
-  {memes.map((element) => {
+  return (
+  <Grid justify="space-around">
+  {memes.map((meme) => {
     return(
-     <img src={element.url}></img>
+      <MemeCard key={meme.id} {...meme} />
     )
-  })}
-  </>)
+  })}  
+  </Grid>
+  )
 }
 
 export default GroupDetails;

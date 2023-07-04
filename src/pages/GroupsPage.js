@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function GroupsPage() {
@@ -34,7 +34,11 @@ function GroupsPage() {
             <p>{element.groupName}</p>
           )
         })}
-        <button>Create New Group</button>
+       <Link to={`/groups/create`}>
+        <p>
+          <button>Create New Group</button>
+        </p>
+      </Link>
       </p>
 
       <p>Groups that I belong to:</p>

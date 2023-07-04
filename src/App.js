@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import MyNavbar from "./components/MyNavbar";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -9,23 +9,17 @@ import IsAnon from "./components/IsAnon";
 import CreateMeme from "./pages/CreateMeme";
 import GroupsPage from "./pages/GroupsPage";
 import GroupDetails from "./pages/GroupDetails";
+import CreateGroup from "./pages/CreateGroup";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <MyNavbar />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* <Route
-          path="/projects"
-          element={ <IsPrivate> <ProjectListPage /> </IsPrivate> } 
-        /> */}
-
-        {/* <Route
-          path="/projects/:projectId"
-          element={ <IsPrivate> <ProjectDetailsPage /> </IsPrivate> }
-        /> */}
+        <Route 
+        path="/" 
+        element={<HomePage />} />
 
         <Route
           path="/templates/:id"
@@ -53,6 +47,16 @@ function App() {
             <IsPrivate>
               {" "}
               <GroupDetails />{" "}
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/groups/create"
+          element={
+            <IsPrivate>
+              {" "}
+              <CreateGroup />{" "}
             </IsPrivate>
           }
         />

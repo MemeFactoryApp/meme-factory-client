@@ -4,13 +4,13 @@ import { Badge, Button, Card, Grid, Group, Image, Text } from "@mantine/core";
 
 function TemplateCard(props) {
   return (
-    <Grid.Col style={{ maxWidth: 350 }} sm={4} xs={4}>
+    <Grid.Col style={{ maxWidth: 300, height: 500 }} sm={4} xs={4}>
       <Link to={`/templates/${props.id}`} element={<CreateMeme />}>
         <Card shadow="sm" padding="lg" radius="md" withBorder>
           <Card.Section>
             <Image src={props.example.url} max-height={400} alt="meme" />
           </Card.Section>
-
+          
           <Group position="apart" mt="md" mb="xs">
             <Text weight={500}>{props.name}</Text>
           </Group>
