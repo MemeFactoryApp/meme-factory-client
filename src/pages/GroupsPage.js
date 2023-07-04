@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function GroupsPage() {
-  const API_URL = process.env.REACT_API_URL || "http://localhost:5005";
+  const API_URL = process.env.REACT_API_URL
   const { id } = useParams();
   const [groups, setGroups] = useState([]);
 

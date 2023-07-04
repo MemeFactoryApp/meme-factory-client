@@ -4,7 +4,7 @@ import TemplateCard from "../components/TemplateCard";
 import { Badge, Button, Card, Grid, Group, Image, Text } from "@mantine/core";
 
 function HomePage() {
-  const API_URL = process.env.REACT_API_URL || "http://localhost:5005";
+  const API_URL = process.env.REACT_API_URL 
   const [templates, setTemplates] = useState([]);
 
   const getAllTemplates = () => {
