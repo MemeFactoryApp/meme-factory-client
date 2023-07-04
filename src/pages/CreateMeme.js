@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button } from "@mantine/core";
 
 function CreateMeme() {
-  const API_URL = process.env.REACT_API_URL 
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
   const [template, setTemplate] = useState(null);
   const [input, setInput] = useState({});
   const [title, setTitle] = useState("");

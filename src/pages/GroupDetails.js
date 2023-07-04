@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function GroupDetails() {
-  const API_URL = process.env.REACT_API_URL
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
   const [memes, setMemes] = useState([]);
 
   const getAllMemes = () => {
