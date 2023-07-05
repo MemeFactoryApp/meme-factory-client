@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MemeCard from "../components/MemeCard";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
 
 function GroupDetails() {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -31,24 +39,17 @@ function GroupDetails() {
 
   return (
     <>
-      <p>Group Details</p>
-
+      <Typography variant="large" color="blue-gray"
+        className="p-1 font-normal">Group Details</Typography>
       <p>Group Name: {group.groupName}</p>
-
-      {memes.length &&
-        memes.map((meme) => {
-          return <img src={meme.url}></img>;
-        })}
-
-      {/*  <div class="grid grid-cols-4 gap-4"></div> */}
-
-      {/*         {memes.map((element) => {
-          return { element.memes};
-        })} */}
-
-      {/*  {group.map((meme) => {
-          return <MemeCard key={meme.id} {...meme } />;
-        })} */}
+      <div class="grid grid-cols-4 gap-4">
+        {memes.length &&
+          memes.map((meme) => {
+            return(
+            <MemeCard key={meme.id} {...meme} />
+            )
+          })}
+      </div>
     </>
   );
 }
