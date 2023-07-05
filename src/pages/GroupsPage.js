@@ -28,20 +28,35 @@ function GroupsPage() {
 
   return (
     <>
-      <p>
-        {groups.map((element) => {
-          return(
-            <p>{element.groupName}</p>
-          )
-        })}
-       <Link to={`/groups/create`}>
+      <Link to={`/groups/create`}>
         <p>
-          <button>Create New Group</button>
+          <button className="bg-blue-gray-100">Create New Group</button>
         </p>
       </Link>
-      </p>
+      <p>
+        <br />
+        <br />
+        <br />
 
-      <p>Groups that I belong to:</p>
+        <p>My Groups</p>
+
+        {groups.map((element) => {
+          return (
+            <>
+              <br />
+              <p>
+                Group Name: {element.groupName} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                No. Of Memes: {element.memes.length}{" "}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No. Of Users:{" "}
+                {element.users.length}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Link to={`/groups/${element._id}`}>
+                  <button className="bg-blue-gray-100">Details</button>
+                </Link>
+              </p>
+            </>
+          );
+        })}
+      </p>
     </>
   );
 }
