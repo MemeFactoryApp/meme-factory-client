@@ -13,16 +13,14 @@ import {
 function TemplateCard(props) {
   return (
     <Link to={`/templates/${props.id}`} element={<CreateMeme />}>
-    <Card className="mt-6 w-96">
-          <CardHeader color="blue-gray" className="relative h-56">
-            <img src={props.example.url} alt="img-blur-shadow" layout="fill" />
+    <Card className="mt-6 w-72 h-[58vh] gap-6">
+          <CardHeader color="blue-gray" className="h-auto">
+            <img src={props.example.url} alt="meme template" className="object-cover" />
           </CardHeader>
-          <CardBody>
+          <CardFooter className="pt-6">
             <Typography>{props.name}</Typography>
-          </CardBody>
-          <CardFooter className="pt-0">
             <Button>Use Template</Button>
-          </CardFooter>
+          </CardFooter >
         </Card>
         </Link>
   );

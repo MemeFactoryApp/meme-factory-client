@@ -21,7 +21,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div class="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-4 grid-flow-row">
         {templates.map((template) => (
           <TemplateCard key={template.id} {...template} />
         ))}

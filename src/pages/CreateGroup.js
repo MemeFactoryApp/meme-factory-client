@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context";
 function CreateGroup() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [groupName, setGroupName] = useState("");
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([{user: ""}]);
   const [memes, setMemes] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [selectedMemes, setSelectedMemes] = useState([]);
@@ -22,7 +22,24 @@ function CreateGroup() {
   };
 
   const handleGroupName = (e) => setGroupName(e.target.value);
-  const handleUsers = (e) => setUsers(e.target.value);
+  const handleAddUser = () => {
+    setUsers([...users, {user: ""}]);
+  };
+
+ const handleDelete= (i) => {
+    const deleteVal = [...users]
+    deleteVal.splice(i, 1)
+    setUsers(deleteVal)
+    }
+
+  const handleChange=(e, i) => {
+    const {name,value} = e.target
+    const onChangeVal = [...users]
+    onChangeVal[i][name]=value
+    setUsers(onChangeVal)
+    }
+    
+   
 
   const getAllMemes = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -47,11 +64,10 @@ function CreateGroup() {
   const handleGroupSubmit = (e) => {
     e.preventDefault();
     const newGroup = {
-      groupName : groupName,
-      users : users,
-      memes: selectedMemes
+      groupName: groupName,
+      users: users,
+      memes: selectedMemes,
     };
-    
 
     const storedToken = localStorage.getItem("authToken");
 
@@ -72,7 +88,7 @@ function CreateGroup() {
   return (
     <>
       <h1>Create a new Group</h1>
-      <form onSubmit={handleGroupSubmit}>
+      <form onSubmit={handleGroupSubmit} autocomplete="off">
         <div className="center flex-col lg:bg-white-200 ">
           <Input
             type="text"
@@ -81,14 +97,28 @@ function CreateGroup() {
             value={groupName}
             onChange={handleGroupName}
           />
-           <Input
-            type="text"
-            size="md"
-            label="Users"
-            value={users}
-            onChange={handleUsers}
-          />
-
+          <label>
+            {users.map((singleUser, index) => (
+              <div key={index}>
+                <Input
+                  type="text"
+                  name="user"
+                  size="lg"
+                  autocomplete="off"
+                  value = {singleUser.user}
+                  onChange={(e) => handleChange(e, index)}
+                />
+                {users.length - 1 === index && (
+                  <span><button onClick={handleAddUser}>Add User</button></span>
+                )}
+                <div>
+                  {users.length > 1 && (
+                    <button type="button" onClick={handleDelete}>Delete</button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </label>
 
           <section class="bg-white-100 dark:bg-white-900 py-10 px-12">
             <div class="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
