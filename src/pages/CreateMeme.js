@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { Button } from "@mantine/core";
-import { Input } from "@material-tailwind/react";
+import { Input, Button } from "@material-tailwind/react";
 
 
 function CreateMeme() {

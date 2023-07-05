@@ -1,23 +1,34 @@
-import { Button, Card, Grid, Group, Image, Text } from "@mantine/core";
+import { Link } from "react-router-dom";
+import CreateMeme from "../pages/CreateMeme";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button
+} from "@material-tailwind/react";
 
 function MemeCard(props) {
   return (
-    <Grid.Col style={{ maxWidth: 350 }} sm={4} xs={4}>
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
-          <Card.Section>
-            <Image src={props.url} max-height={400} alt="meme" />
-          </Card.Section>
-
-          <Group position="apart" mt="md" mb="xs">
-            <Text weight={500}>{props.title}</Text>
-          </Group>
-
-          <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-            Delete Meme
-          </Button>
-        </Card>
-    </Grid.Col>
+<Card className="mt-6 w-96">
+<CardHeader color="blue-gray" className="relative h-56">
+  <img src={props.url} alt="img-blur-shadow" layout="fill" />
+</CardHeader>
+<CardBody>
+  <Typography>
+  {props.name}
+  </Typography>
+</CardBody>
+<CardFooter className="pt-0">
+  <Button>Delete Meme</Button>
+</CardFooter>
+</Card>
   );
 }
+
+
+
+
 
 export default MemeCard;

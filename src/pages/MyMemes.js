@@ -1,4 +1,3 @@
-import { Grid } from "@mantine/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MemeCard from "../components/MemeCard";
@@ -22,13 +21,14 @@ function MyMemes() {
   }, []);
 
   return (
-  <Grid justify="space-around">
+    <div class="grid grid-cols-4 gap-4">
   {memes.map((meme) => {
     return(
       <MemeCard key={meme.id} {...meme} />
     )
   })}  
-  </Grid>
+ </div>
+
   )
 }
 
