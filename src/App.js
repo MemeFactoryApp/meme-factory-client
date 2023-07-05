@@ -10,6 +10,7 @@ import CreateMeme from "./pages/CreateMeme";
 import GroupsPage from "./pages/GroupsPage";
 import GroupDetails from "./pages/GroupDetails";
 import CreateGroup from "./pages/CreateGroup";
+import MyMemes from './pages/MyMemes'
 
 function App() {
   return (
@@ -54,7 +55,7 @@ function App() {
           element={
             <IsPrivate>
               {" "}
-              <GroupDetails />{" "}
+              <MyMemes />{" "}
             </IsPrivate>
           }
         />

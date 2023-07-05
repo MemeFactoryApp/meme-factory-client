@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mantine/core";
+import { Input } from "@material-tailwind/react";
+
 
 function CreateMeme() {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -78,6 +80,7 @@ function CreateMeme() {
       url: template.example.url,
     };
     createMeme(newMeme);
+    navigate('/memes')
   };
 
   const createMeme = (newMeme) => {
@@ -95,12 +98,24 @@ function CreateMeme() {
   return (
     <>
       <h1>Create new Me-me</h1>
+        <Input
+          type="text"
+          name="title"
+          placeholder="Name your meme here"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
       <h1>{template.name}</h1>
       <img src={template.example.url} />
-      <form onSubmit={handleSubmit}>
+     <form
+        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+        onSubmit={handleSubmit}
+      >
         {Object.values(input).map((element, index) => {
           return (
-            <input
+            <Input
               key={index}
               type="text"
               name={index}
@@ -109,15 +124,9 @@ function CreateMeme() {
             />
           );
         })}
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        ></input>
-        <Button onClick={handleSubmit}>Create</Button>
+        <Link to="/memes">
+        <Button to="/memes" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" fullWidth onClick={handleSubmit}>Create</Button>
+      </Link>
       </form>
     </>
   );

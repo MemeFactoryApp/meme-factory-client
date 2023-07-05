@@ -5,7 +5,6 @@ import { AuthContext } from "../context/auth.context";
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
 } from "@material-tailwind/react";
