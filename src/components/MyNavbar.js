@@ -5,11 +5,9 @@ import { AuthContext } from "../context/auth.context";
 import React from "react";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
-  Button,
   IconButton,
-  Card,
 } from "@material-tailwind/react";
  
 function MyNavbar() {
@@ -166,9 +164,9 @@ function MyNavbar() {
             </IconButton>
           </div>
         </div>
-        <MobileNav open={openNav}>
+        <Collapse open={openNav}>
           {navList}
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </>
   );

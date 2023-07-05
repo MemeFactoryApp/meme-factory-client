@@ -2,14 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MemeCard from "../components/MemeCard";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 
 function GroupDetails() {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -35,7 +28,7 @@ function GroupDetails() {
     getGroup();
   }, []);
 
-  console.log(group);
+  console.log(group.users);
 
   return (
     <>
