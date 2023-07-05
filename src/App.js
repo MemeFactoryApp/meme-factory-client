@@ -17,9 +17,7 @@ function App() {
       <MyNavbar />
 
       <Routes>
-        <Route 
-        path="/" 
-        element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
 
         <Route
           path="/templates/:id"
@@ -41,7 +39,17 @@ function App() {
           }
         />
 
-<Route
+        <Route
+          path="/groups/:id"
+          element={
+            <IsPrivate>
+              {" "}
+              <GroupDetails />{" "}
+            </IsPrivate>
+          }
+        />
+
+        <Route
           path="/memes"
           element={
             <IsPrivate>
