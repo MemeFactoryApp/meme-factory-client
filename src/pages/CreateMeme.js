@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { Input, Button } from "@material-tailwind/react";
-
+import { Input, Button, Card, Typography } from "@material-tailwind/react";
 
 function CreateMeme() {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -79,7 +78,7 @@ function CreateMeme() {
       url: template.example.url,
     };
     createMeme(newMeme);
-    navigate('/memes')
+    navigate("/memes");
   };
 
   const createMeme = (newMeme) => {
@@ -95,26 +94,33 @@ function CreateMeme() {
   };
 
   return (
-    <>
-      <h1>Create new Me-me</h1>
+    <Card
+    color="transparent"
+    className="flex items-center justify-center"
+    shadow={false}
+  >
+    <Typography variant="h4" color="blue-gray">
+      Create a new Meme
+    </Typography>
+    <form
+      className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+      onSubmit={handleSubmit}
+    >
+      <div className="mb-4 flex flex-col gap-6">
         <Input
-          type="text"
-          name="title"
-          placeholder="Name your meme here"
+          size="lg"
+          label="Name your new meme"
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         />
-      <h1>{template.name}</h1>
-      <img src={template.example.url} />
-     <form
-        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-        onSubmit={handleSubmit}
-      >
+        <img src={template.example.url} />
         {Object.values(input).map((element, index) => {
           return (
             <Input
+              size="lg"
+              label="Add text to your meme"
               key={index}
               type="text"
               name={index}
@@ -123,12 +129,21 @@ function CreateMeme() {
             />
           );
         })}
-        <Link to="/memes">
-        <Button to="/memes" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" fullWidth onClick={handleSubmit}>Create</Button>
-      </Link>
-      </form>
-    </>
+      </div>
+      <Button
+        to="/memes"
+        onClick={handleSubmit}
+        className="mt-6"
+        fullWidth
+        type="submit"
+      >
+        Create Meme
+      </Button>
+    </form>
+  </Card>
   );
 }
+
+
 
 export default CreateMeme;

@@ -21,7 +21,7 @@ function MemeCard(props) {
     axios
       .delete(`${API_URL}/api/memes/${id}/delete`)
       .then(() => {
-        navigate("/memes");
+        props.getAllMemes()
       })
       .catch((err) => console.log(err));
   };
@@ -34,7 +34,7 @@ function MemeCard(props) {
       </CardHeader>
       <CardFooter className="pt-6">
         <Typography>{props.title}</Typography>
-          <Button onClick={deleteMeme}>Delete Meme</Button>
+          <Button variant="outlined" color="purple" onClick={deleteMeme}>Delete Meme</Button>
       </CardFooter>
     </Card>
   );

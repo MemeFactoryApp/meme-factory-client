@@ -35,7 +35,7 @@ function GroupMemeCard(props) {
       <CardFooter className="pt-6">
         <Typography>{props.title}</Typography>
         {user._id === props.createdBy && (
-          <Button onClick={deleteMeme}>Delete Meme from Group</Button>
+          <Button variant="outlined" color="purple" onClick={deleteMeme}>Delete Meme from Group</Button>
         )}
       </CardFooter>
     </Card>

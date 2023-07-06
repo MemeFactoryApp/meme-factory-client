@@ -19,7 +19,7 @@ function TemplateCard(props) {
           </CardHeader>
           <CardFooter className="pt-6">
             <Typography>{props.name}</Typography>
-            <Button>Use Template</Button>
+            <Button variant="outlined" color="purple">Use Template</Button>
           </CardFooter >
         </Card>
         </Link>

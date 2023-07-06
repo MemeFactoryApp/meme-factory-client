@@ -42,7 +42,7 @@ function MyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/">
+        <Link to="/templates">
             <button>Create Meme</button>
           </Link>
       </Typography>

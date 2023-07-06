@@ -10,7 +10,9 @@ import CreateMeme from "./pages/CreateMeme";
 import GroupsPage from "./pages/GroupsPage";
 import GroupDetails from "./pages/GroupDetails";
 import CreateGroup from "./pages/CreateGroup";
-import MyMemes from './pages/MyMemes'
+import MyMemes from "./pages/MyMemes";
+import Footer from "./components/Footer";
+import Templates from "./pages/Templates";
 
 function App() {
   return (
@@ -26,6 +28,15 @@ function App() {
             <IsPrivate>
               {" "}
               <CreateMeme />{" "}
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/templates"
+          element={
+            <IsPrivate>
+              {" "}
+              <Templates />{" "}
             </IsPrivate>
           }
         />
@@ -49,7 +60,6 @@ function App() {
             </IsPrivate>
           }
         />
-  
 
         <Route
           path="/memes"
@@ -90,6 +100,8 @@ function App() {
           }
         />
       </Routes>
+
+      <Footer />
     </div>
   );
 }

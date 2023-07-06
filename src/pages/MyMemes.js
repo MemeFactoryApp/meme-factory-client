@@ -26,7 +26,7 @@ function MyMemes() {
     <div class="grid grid-cols-4 gap-4">
   {memes.map((meme) => {
     return(
-      <MemeCard key={meme.id} {...meme} />
+      <MemeCard key={meme.id} {...meme} getAllMemes={getAllMemes}/>
     )
   })}  
  </div>

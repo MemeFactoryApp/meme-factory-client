@@ -22,6 +22,8 @@ function CreateGroup() {
   };
 
   const handleGroupName = (e) => setGroupName(e.target.value);
+
+  
   const handleAddUser = () => {
     setUsers([...users, {user: ""}]);
   };
