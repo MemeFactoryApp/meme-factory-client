@@ -1,13 +1,12 @@
-import { Input, Button, Typography } from "@material-tailwind/react";
+import { Input, Button } from "@material-tailwind/react";
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
 
 function CreateGroup() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [groupName, setGroupName] = useState("");
-  const [users, setUsers] = useState([{user: ""}]);
+  const [users, setUsers] = useState([{ user: "" }]);
   const [memes, setMemes] = useState([]);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [selectedMemes, setSelectedMemes] = useState([]);
@@ -23,22 +22,22 @@ function CreateGroup() {
 
   const handleGroupName = (e) => setGroupName(e.target.value);
   const handleAddUser = () => {
-    setUsers([...users, {user: ""}]);
+    setUsers([...users, { user: "" }]);
   };
 
- const handleDelete= (i) => {
-    const deleteVal = [...users]
-    deleteVal.splice(i, 1)
-    setUsers(deleteVal)
-    }
+  const handleDelete = (i) => {
+    const deleteVal = [...users];
+    deleteVal.splice(i, 1);
+    setUsers(deleteVal);
+  };
 
-  const handleChange=(e, i) => {
-    const {name,value} = e.target
-    const onChangeVal = [...users]
-    onChangeVal[i][name]=value
-    setUsers(onChangeVal)
-    }
-    
+  const handleChange = (e, i) => {
+    const { name, value } = e.target;
+    const onChangeVal = [...users];
+    onChangeVal[i][name] = value;
+    setUsers(onChangeVal);
+  };
+
   const getAllMemes = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
@@ -63,7 +62,7 @@ function CreateGroup() {
     e.preventDefault();
     const newGroup = {
       groupName: groupName,
-      users: users.filter((user) => user.user !== ""),
+      users: users,
       memes: selectedMemes,
     };
 
@@ -87,37 +86,46 @@ function CreateGroup() {
     <>
       <h1>Create a new Group</h1>
       <form onSubmit={handleGroupSubmit} autocomplete="off">
-        <div className="center flex-col lg:bg-white-200 ">
-          <Input
-            type="text"
-            size="md"
-            label="Group Name"
-            value={groupName}
-            onChange={handleGroupName}
-          />
-          <label>
-            {users.map((singleUser, index) => (
-              <div key={index}>
-                <Input
-                  type="text"
-                  name="user"
-                  size="lg"
-                  autocomplete="off"
-                  value = {singleUser.user}
-                  onChange={(e) => handleChange(e, index)}
-                />
-                {users.length - 1 === index && (
-                  <span><button onClick={handleAddUser}>Add User</button></span>
-                )}
-                <div>
-                  {users.length > 1 && (
-                    <button type="button" onClick={handleDelete}>Delete</button>
+        <section className="flex items-center justify-center">
+          <div className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+            <div className="m-4">
+            <Input
+            className="p-2"
+              type="text"
+              size="lg"
+              label="Group Name"
+              value={groupName}
+              onChange={handleGroupName}
+            /></div>
+            <label>
+              {users.map((singleUser, index) => (
+                <div key={index}>
+                  <Input
+                    type="text"
+                    size="lg"
+                    label="User email"
+                    autocomplete="off"
+                    value={singleUser.user}
+                    onChange={(e) => handleChange(e, index)}
+                  />
+                  {users.length - 1 === index && (
+                    <span>
+                      <button onClick={handleAddUser}>Add User</button>
+                    </span>
                   )}
+                  <div>
+                    
+                    {users.length > 1 && (
+                      <button type="button" onClick={handleDelete}>
+                        Delete
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </label>
-
+              ))}
+            </label>
+          </div>
+        </section>
           <section class="bg-white-100 dark:bg-white-900 py-10 px-12">
             <div class="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {memes.map((element, index) => {
@@ -155,7 +163,6 @@ function CreateGroup() {
           </section>
           <Button type="submit">Create Group</Button>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
-        </div>
       </form>
     </>
   );

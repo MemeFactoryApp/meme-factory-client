@@ -43,12 +43,14 @@ function GroupDetails() {
 
   return (
     <>
-      <Typography variant="large" color="blue-gray" className="p-1 font-normal">
+      <Typography className="m-3" variant="h4" color="blue-gray">
         Group Details
-        <Link to={`/groups/${groupId}/addMemes`}>
-          <Button>Add Memes to this Group</Button>
-        </Link>
       </Typography>
+      <Link to={`/groups/${groupId}/addMemes`}>
+        <Button className="m-3" variant="outlined" color="purple">
+          Add Memes to this Group
+        </Button>
+      </Link>
       <p>Group Name: {group.groupName}</p>
       <p>
         <Link to={`/groups/edit/${groupId}`}>
@@ -56,12 +58,9 @@ function GroupDetails() {
         </Link>
       </p>
       <div class="grid grid-cols-4 gap-4">
-        {memes.length &&
-          memes.map((meme) => {
-            return (
-              <GroupMemeCard key={meme.id} {...meme} getGroup={getGroup} />
-            );
-          })}
+        {memes.map((meme) => {
+          return <GroupMemeCard key={meme.id} {...meme} getGroup={getGroup} />;
+        })}
       </div>
       {group.createdBy === user?._id && (
         <Button type="button" onClick={handleDelete}>

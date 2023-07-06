@@ -28,14 +28,14 @@ function GroupMemeCard(props) {
   };
 
   return (
-    <Card className="mt-6 w-72 h-[58vh] gap-6">
+    <Card className="mt-6 w-72 h-[58vh] gap-6 flex flex-col">
       <CardHeader color="blue-gray" className="h-auto">
         <img src={props.url} alt="meme template" className="object-cover" />
       </CardHeader>
       <CardFooter className="pt-6">
         <Typography>{props.title}</Typography>
         {user._id === props.createdBy && (
-          <Button variant="outlined" color="purple" onClick={deleteMeme}>Delete Meme from Group</Button>
+          <Button variant="outlined" className="flex flex-col justify-end" color="purple" onClick={deleteMeme}>Delete Meme from Group</Button>
         )}
       </CardFooter>
     </Card>

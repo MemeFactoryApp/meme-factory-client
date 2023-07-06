@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import MemeCard from "../components/MemeCard";
 import { Input, Button, Typography } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function EditGroupPage() {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
   const { groupId } = useParams();
   const [group, setGroup] = useState([]);
-  const [memes, setMemes] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [users, setUsers] = useState([{ user: "" }]);
   const [errorMessage, setErrorMessage] = useState(undefined);
   const navigate = useNavigate();
 
-  const handleGroupName = (e) => setGroupName(e.target.value);
   const handleAddUser = () => {
     setUsers([...users, { user: "" }]);
   };

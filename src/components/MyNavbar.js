@@ -80,7 +80,7 @@ function MyNavbar() {
         variant="small"
         color="blue-gray"
         className="p-1 font-normal"
-      > <span><i>{user && user.name}</i></span>
+      > <span><p>Welcome</p> <i>{user && user.name}</i></span>
         </Typography>
         </>
       )}

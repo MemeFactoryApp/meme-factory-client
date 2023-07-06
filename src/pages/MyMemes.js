@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Typography } from "@material-tailwind/react";
 import MemeCard from "../components/MemeCard";
 
 function MyMemes() {
@@ -23,6 +24,10 @@ function MyMemes() {
   }, []);
 
   return (
+    <>
+    <Typography className="m-3" variant="h4" color="blue-gray">
+        My Memes
+      </Typography>
     <div class="grid grid-cols-4 gap-4">
   {memes.map((meme) => {
     return(
@@ -30,6 +35,7 @@ function MyMemes() {
     )
   })}  
  </div>
+ </>
   )
 }
 

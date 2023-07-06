@@ -40,7 +40,7 @@ function GroupsPage() {
         </Button>
       </Link>
 
-      <Card className="overflow-scroll h-full w-full m-5">
+      <Card className="h-full w-10/12/ m-5">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -97,7 +97,7 @@ function GroupsPage() {
                     className="font-medium"
                   >
                     <Link to={`/groups/${element._id}`}>
-                      <button className="bg-blue-gray-100">Details</button>
+                      <Button color="purple">Details</Button>
                     </Link>
                   </Typography>
                 </td>

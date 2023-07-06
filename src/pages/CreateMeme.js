@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Input, Button, Card, Typography } from "@material-tailwind/react";
 
@@ -12,10 +12,9 @@ function CreateMeme() {
   const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
 
-  // Set default header. e.g, X-API-KEY
-  axios.defaults.headers.common = {
-    "X-API-Key": "mequyzi2p0",
-  };
+  
+  
+
   // this function controls our loading state
   const toggleLoadingState = () => {
     setisLoading((current) => !current);
