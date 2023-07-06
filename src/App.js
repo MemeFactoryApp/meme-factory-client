@@ -14,6 +14,7 @@ import MyMemes from "./pages/MyMemes";
 import Footer from "./components/Footer";
 import Templates from "./pages/Templates";
 import EditGroupPage from "./pages/EditGroupPage";
+import AddMemesToGroup from "./pages/AddMemesToGroup";
 
 function App() {
   return (
@@ -69,6 +70,18 @@ function App() {
             </IsPrivate>
           }
         />
+
+         <Route
+          path='/groups/:groupId/addMemes'
+          element={
+            <IsPrivate>
+              {" "}
+              <AddMemesToGroup />{" "}
+            </IsPrivate>
+          }
+        />
+
+
 
         <Route
           path="/memes"
