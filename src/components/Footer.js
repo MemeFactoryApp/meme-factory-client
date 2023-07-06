@@ -8,7 +8,6 @@ return(
   <ul class="flex flex-wrap items-center gap-y-2 gap-x-8">
     <li>
       <a
-        href="#"
         class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500"
       >
         About Us
@@ -16,7 +15,6 @@ return(
     </li>
     <li>
       <a
-        href="#"
         class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500"
       >
         License
@@ -24,7 +22,6 @@ return(
     </li>
     <li>
       <a
-        href="#"
         class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500"
       >
         Contribute
@@ -32,7 +29,6 @@ return(
     </li>
     <li>
       <a
-        href="#"
         class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500"
       >
         Contact Us

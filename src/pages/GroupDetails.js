@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Typography, Button } from "@material-tailwind/react";
+import { Typography, Button, Link } from "@material-tailwind/react";
 import GroupMemeCard from "../components/GroupMemeCard";
 import { AuthContext } from "../context/auth.context";
 
@@ -37,6 +37,12 @@ function GroupDetails() {
       <Typography variant="large" color="blue-gray"
         className="p-1 font-normal">Group Details</Typography>
       <p>Group Name: {group.groupName}</p>
+
+      <p>
+        <Link to={`/groups/edit/${groupId}`}>
+          <button className="bg-blue-gray-100">Edit</button>
+        </Link>
+      </p>
       <div class="grid grid-cols-4 gap-4">
         {memes.length &&
           memes.map((meme) => {

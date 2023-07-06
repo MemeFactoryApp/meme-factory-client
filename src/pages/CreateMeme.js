@@ -78,7 +78,6 @@ function CreateMeme() {
       url: template.example.url,
     };
     createMeme(newMeme);
-    navigate("/memes");
   };
 
   const createMeme = (newMeme) => {
@@ -88,7 +87,7 @@ function CreateMeme() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        navigate("/");
+        navigate("/memes");
       })
       .catch((e) => console.log(e));
   };

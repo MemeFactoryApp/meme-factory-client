@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../context/auth.context";
 import {
   Card,
   CardHeader,
@@ -8,12 +6,9 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useContext, useEffect } from "react";
 
 function MemeCard(props) {
 
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
   const deleteMeme = () => {

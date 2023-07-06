@@ -22,8 +22,6 @@ function CreateGroup() {
   };
 
   const handleGroupName = (e) => setGroupName(e.target.value);
-
-  
   const handleAddUser = () => {
     setUsers([...users, {user: ""}]);
   };
@@ -41,8 +39,6 @@ function CreateGroup() {
     setUsers(onChangeVal)
     }
     
-   
-
   const getAllMemes = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
@@ -67,7 +63,7 @@ function CreateGroup() {
     e.preventDefault();
     const newGroup = {
       groupName: groupName,
-      users: users,
+      users: users.filter((user) => user.user !== ""),
       memes: selectedMemes,
     };
 

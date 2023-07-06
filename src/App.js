@@ -13,6 +13,7 @@ import CreateGroup from "./pages/CreateGroup";
 import MyMemes from "./pages/MyMemes";
 import Footer from "./components/Footer";
 import Templates from "./pages/Templates";
+import EditGroupPage from "./pages/EditGroupPage";
 
 function App() {
   return (
@@ -50,7 +51,15 @@ function App() {
             </IsPrivate>
           }
         />
-
+        <Route
+          path="/groups/edit/:groupId"
+          element={
+            <IsPrivate>
+              {" "}
+              <EditGroupPage />{" "}
+            </IsPrivate>
+          }
+        />
         <Route
           path="/groups/:groupId"
           element={
