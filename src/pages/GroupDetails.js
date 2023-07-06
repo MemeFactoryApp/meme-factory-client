@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import MemeCard from "../components/MemeCard";
-import { Typography } from "@material-tailwind/react";
+import { Typography, Button } from "@material-tailwind/react";
+import GroupMemeCard from "../components/GroupMemeCard";
+import { AuthContext } from "../context/auth.context";
 
 function GroupDetails() {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
-  const { id } = useParams();
+  const { groupId } = useParams();
+  const { user } = useContext(AuthContext);
   const [group, setGroup] = useState([]);
   const [memes, setMemes] = useState([]);
 
   const getGroup = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/api/groups/${id}`, {
+      .get(`${API_URL}/api/groups/${groupId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -39,10 +41,11 @@ function GroupDetails() {
         {memes.length &&
           memes.map((meme) => {
             return(
-            <MemeCard key={meme.id} {...meme} />
+            <GroupMemeCard key={meme.id} {...meme} />
             )
           })}
       </div>
+      {group.createdBy === user._id && <Button>Delete Group</Button>}
     </>
   );
 }

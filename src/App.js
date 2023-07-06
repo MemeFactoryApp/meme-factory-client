@@ -41,7 +41,7 @@ function App() {
         />
 
         <Route
-          path="/groups/:id"
+          path="/groups/:groupId"
           element={
             <IsPrivate>
               {" "}
@@ -49,6 +49,7 @@ function App() {
             </IsPrivate>
           }
         />
+  
 
         <Route
           path="/memes"

@@ -56,7 +56,7 @@ function CreateMeme() {
         console.log(
           "response >>>>>",
           response.data,
-          "previoustyemplate >>>>>",
+          "previoustemplate >>>>>",
           template
         );
         if (!isLoading && template)

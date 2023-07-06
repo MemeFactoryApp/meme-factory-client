@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import {
@@ -10,22 +10,22 @@ import {
 } from "@material-tailwind/react";
 import { useContext, useEffect } from "react";
 
-function MemeCard(props) {
-
+function GroupMemeCard(props) {
+  const { groupId } = useParams();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
   const deleteMeme = () => {
     const id = [props._id];
+    console.log(groupId)
     axios
-      .delete(`${API_URL}/api/memes/${id}/delete`)
+      .delete(`${API_URL}/api/groups/${groupId}/memes/${id}/delete`)
       .then(() => {
-        navigate("/memes");
+        navigate(`/groups/${groupId}`);
       })
       .catch((err) => console.log(err));
   };
-
 
   return (
     <Card className="mt-6 w-72 h-[58vh] gap-6">
@@ -34,10 +34,12 @@ function MemeCard(props) {
       </CardHeader>
       <CardFooter className="pt-6">
         <Typography>{props.title}</Typography>
-          <Button onClick={deleteMeme}>Delete Meme</Button>
+        {user._id === props.createdBy && (
+          <Button onClick={deleteMeme}>Delete Meme from Group</Button>
+        )}
       </CardFooter>
     </Card>
   );
 }
 
-export default MemeCard;
+export default GroupMemeCard;

@@ -16,6 +16,8 @@ function MyMemes() {
       .catch((error) => console.log(error));
   };
 
+  
+
   useEffect(() => {
     getAllMemes();
   }, []);

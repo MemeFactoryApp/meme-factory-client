@@ -69,7 +69,7 @@ function SignupPage(props) {
             >
               I agree the
               <a
-                href="https://api.memegen.link/images/buzz/terms_~a_conditions/memes_everywhere.gif"
+                href="https://api.memegen.link/images/agnes/_/i_have_read_and_agree_to_the_terms_and_conditions.png"
                 target="_blank"
                 className="font-medium transition-colors hover:text-blue-500"
               >
