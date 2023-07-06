@@ -46,7 +46,7 @@ function GroupDetails() {
       <div class="grid grid-cols-4 gap-4">
         {memes.length &&
           memes.map((meme) => {
-            return <GroupMemeCard key={meme.id} {...meme} />;
+            return <GroupMemeCard key={meme.id} {...meme} getGroup={getGroup}/>;
           })}
       </div>
       {group.createdBy === user?._id && <Button>Delete Group</Button>}

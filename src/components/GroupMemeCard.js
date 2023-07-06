@@ -22,7 +22,7 @@ function GroupMemeCard(props) {
     axios
       .delete(`${API_URL}/api/groups/${groupId}/memes/${id}/delete`)
       .then(() => {
-        navigate(`/groups/${groupId}`);
+        props.getGroup()
       })
       .catch((err) => console.log(err));
   };

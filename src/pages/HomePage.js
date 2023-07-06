@@ -73,10 +73,10 @@ function HomePage() {
     Create your own meme
   </Button></Link>}
   </div>
-</div>;
+</div>
 
     </>
-  );
+  )
 }
 
 
