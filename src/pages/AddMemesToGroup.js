@@ -1,4 +1,4 @@
-import { Button } from "@material-tailwind/react";
+import { Button, Card } from "@material-tailwind/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -57,32 +57,27 @@ function AddMemesToGroup() {
           {memes.map((element, index) => {
             console.log(element._id);
             return (
-              <div
+              <Card
                 class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
                 key={index}
                 className={
                   selectedMemes.includes(element._id)
-                    ? "bg-red-200 w-72"
+                    ? "bg-green-200 w-72"
                     : "bg-white w-72"
                 }
+                onClick={() => selectMeme(element._id)}
               >
-                <article class="overflow-hidden rounded-lg shadow-lg">
+                <article class="overflow-hidden rounded-lg">
                   <img
                     class="block h-auto w-full p-3"
                     src={element.url}
-                    className={
-                      selectedMemes.includes(element._id)
-                        ? "bg-red-200"
-                        : "bg-white"
-                    }
-                    onClick={() => selectMeme(element._id)}
                   ></img>
                   <header class="flex items-center justify-between leading-tight p-2 md:p-4">
                     <h1 class="text-lg">{element.title}</h1>
                   </header>
                   <footer class="flex items-center justify-between leading-none p-2 md:p-4"></footer>
                 </article>
-              </div>
+              </Card>
             );
           })}
         </div>

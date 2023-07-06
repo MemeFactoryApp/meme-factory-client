@@ -43,21 +43,23 @@ function GroupDetails() {
 
   return (
     <>
-      <Typography className="m-3" variant="h4" color="blue-gray">
+      <Typography className="m-3 text-gray-900" variant="h3" color="blue-gray">
         Group Details
       </Typography>
-      <Link to={`/groups/${groupId}/addMemes`}>
-        <Button className="m-3" variant="outlined" color="purple">
+      <Typography className="m-3 text-gray-900" variant="h6">Group name: "{group.groupName}"</Typography>
+      <div className="sticky top z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 mb-4">
+        <div className="flex items-center justify-between">
+        <Link to={`/groups/${groupId}/addMemes`}>
+        <Button className="m-3" color="purple">
           Add Memes to this Group
         </Button>
       </Link>
-      <p>Group Name: {group.groupName}</p>
-      <p>
         <Link to={`/groups/edit/${groupId}`}>
-          <button className="bg-blue-gray-100">Edit</button>
+          <Button className="m-3 flex justify-end" color="purple">Edit</Button>
         </Link>
-      </p>
-      <div class="grid grid-cols-4 gap-4">
+      </div>
+      </div>
+      <div class="grid grid-cols-4 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {memes.map((meme) => {
           return <GroupMemeCard key={meme.id} {...meme} getGroup={getGroup} />;
         })}
