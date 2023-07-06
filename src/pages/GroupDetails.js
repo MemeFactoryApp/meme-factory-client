@@ -4,6 +4,7 @@ import axios from "axios";
 import { Typography, Button } from "@material-tailwind/react";
 import GroupMemeCard from "../components/GroupMemeCard";
 import { AuthContext } from "../context/auth.context";
+import { useNavigate } from "react-router-dom";
 
 function GroupDetails() {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -11,6 +12,7 @@ function GroupDetails() {
   const { user } = useContext(AuthContext);
   const [group, setGroup] = useState([]);
   const [memes, setMemes] = useState([]);
+  const navigate = useNavigate();
 
   const getGroup = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -30,12 +32,22 @@ function GroupDetails() {
     getGroup();
   }, []);
 
-  console.log(group.users);
+  const handleDelete = () => {
+    axios
+      .delete(`${API_URL}/api/groups/${groupId}/delete`)
+      .then(() => {
+        navigate("/groups");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
       <Typography variant="large" color="blue-gray" className="p-1 font-normal">
         Group Details
+        <Link to={`/groups/${groupId}/addMemes`}>
+          <Button>Add Memes to this Group</Button>
+        </Link>
       </Typography>
       <p>Group Name: {group.groupName}</p>
       <p>
@@ -46,10 +58,16 @@ function GroupDetails() {
       <div class="grid grid-cols-4 gap-4">
         {memes.length &&
           memes.map((meme) => {
-            return <GroupMemeCard key={meme.id} {...meme} getGroup={getGroup}/>;
+            return (
+              <GroupMemeCard key={meme.id} {...meme} getGroup={getGroup} />
+            );
           })}
       </div>
-      {group.createdBy === user?._id && <Button>Delete Group</Button>}
+      {group.createdBy === user?._id && (
+        <Button type="button" onClick={handleDelete}>
+          Delete Group
+        </Button>
+      )}
     </>
   );
 }
