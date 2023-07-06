@@ -52,12 +52,12 @@ function CreateMeme() {
     axios
       .post(`${API_URL}/api/templates/${id}`, requestBody)
       .then((response) => {
-        console.log(
+        /* console.log(
           "response >>>>>",
           response.data,
           "previoustemplate >>>>>",
           template
-        );
+        ); */
         if (!isLoading && template)
           setTemplate((prevTemplate) => {
             const newObj = { ...prevTemplate };
@@ -77,72 +77,72 @@ function CreateMeme() {
       title: title,
       url: template.example.url,
     };
-    createMeme(newMeme);
-  };
-
-  const createMeme = (newMeme) => {
     const storedToken = localStorage.getItem("authToken");
+    console.log("---before axios ---");
+
     axios
       .post(`${API_URL}/api/create`, newMeme, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
+        console.log("---inside axios axios ---");
         navigate("/memes");
       })
       .catch((e) => console.log(e));
+    console.log("---after axios ---");
   };
+
+  //const createMeme = (newMeme) => {};
 
   return (
     <Card
-    color="transparent"
-    className="flex items-center justify-center"
-    shadow={false}
-  >
-    <Typography variant="h4" color="blue-gray">
-      Create a new Meme
-    </Typography>
-    <form
-      className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-      onSubmit={handleSubmit}
+      color="transparent"
+      className="flex items-center justify-center"
+      shadow={false}
     >
-      <div className="mb-4 flex flex-col gap-6">
-        <Input
-          size="lg"
-          label="Name your new meme"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <img src={template.example.url} />
-        {Object.values(input).map((element, index) => {
-          return (
-            <Input
-              size="lg"
-              label="Add text to your meme"
-              key={index}
-              type="text"
-              name={index}
-              value={element}
-              onChange={changeInput}
-            />
-          );
-        })}
-      </div>
-      <Button
-        to="/memes"
-        onClick={handleSubmit}
-        className="mt-6"
-        fullWidth
-        type="submit"
+      <Typography variant="h4" color="blue-gray">
+        Create a new Meme
+      </Typography>
+      <form
+        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+        // onSubmit={handleSubmit}
       >
-        Create Meme
-      </Button>
-    </form>
-  </Card>
+        <div className="mb-4 flex flex-col gap-6">
+          <Input
+            size="lg"
+            label="Name your new meme"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <img src={template.example.url} />
+          {Object.values(input).map((element, index) => {
+            return (
+              <Input
+                size="lg"
+                label="Add text to your meme"
+                key={index}
+                type="text"
+                name={index}
+                value={element}
+                onChange={changeInput}
+              />
+            );
+          })}
+        </div>
+        <Button
+          //to="/memes"
+          onClick={handleSubmit}
+          className="mt-6"
+          fullWidth
+          type="submit"
+        >
+          Create Meme
+        </Button>
+      </form>
+    </Card>
   );
 }
-
-
 
 export default CreateMeme;
