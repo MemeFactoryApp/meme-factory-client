@@ -29,7 +29,7 @@ function Templates() {
   return (
     <>
     <Search query={query} setQuery={setQuery} />
-    <div className="grid grid-cols-4 gap-4 grid-flow-row sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid gap-4 grid-flow-row sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredTemplates.map((template) => (
           <TemplateCard key={template.id} {...template} />
         ))}

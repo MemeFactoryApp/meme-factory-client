@@ -52,7 +52,7 @@ function HomePage() {
         <img
           src={meme.url}
           alt="meme"
-          className="flex p-2 items-center justify-center rounded-xl"
+          className="flex p-4 items-center justify-center rounded-xl"
         />
       ))}
     </Carousel>
