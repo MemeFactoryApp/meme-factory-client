@@ -62,7 +62,7 @@ function CreateGroup() {
     e.preventDefault();
     const newGroup = {
       groupName: groupName,
-      users: users,
+      users: users.filter((user) => user.user !== ""),
       memes: selectedMemes,
     };
 
@@ -103,6 +103,7 @@ function CreateGroup() {
                   <Input
                     type="text"
                     size="lg"
+                    name="user"
                     label="User email"
                     autocomplete="off"
                     value={singleUser.user}
